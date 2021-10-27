@@ -1,0 +1,29 @@
+import pandas as pd
+data = pd.read_csv('zomatoChennai.csv')
+data
+data.shape
+data.isna().sum()
+import numpy as np
+data.replace(to_replace = ['None','Invalid','Does not offer Delivery','Does not offer Dining','Not enough Delivery Reviews','Not enough Dining Reviews'], value =np.nan,inplace=True)
+data.isnull().sum()
+data
+data.pop("Features")
+data
+data['Cuisine'].unique()
+data.pop('Delivery Rating')
+data
+data.pop('Delivery Rating Count')
+data
+df = data.dropna(subset=["Dining Rating","Dining Rating Count"],axis = 0,inplace = False)
+df
+len(df["Name of Restaurant"].unique().tolist())
+df
+dataFrame = df.drop(['Location'],axis = 1,inplace = False)
+dataFrame
+dataFrame1 = dataFrame.drop(['Top Dishes'],axis = 1,inplace = False)
+dataFrame1
+df1 = dataFrame1.reset_index(drop=True)
+df1
+d = df1.groupby('Name of Restaurant')['Dining Rating'].max()
+
+d["Amma Unavagam"]
